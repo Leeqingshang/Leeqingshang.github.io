@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>博客搭建记录 | Lee</title>
+    <meta name="author" content="Lee" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Lee's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/blog.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <style>html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]),
+[hidden] {
+  display: none;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+  font-family: Helvetica, Tahoma, Arial, 'Hiragino Sans GB', '\51AC\9752\9ED1\4F53', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', STXihei, '\534E\6587\7EC6\9ED1', SimSun, '\5B8B\4F53', Heiti, '\9ED1\4F53', sans-serif;
+  font-size: 16px;
+}
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+}
+a {
+  color: #4a75b5;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a.external {
+  padding-right: 13px;
+  background: url("/images/icons.gif") no-repeat right 1px;
+}
+a.external:hover {
+  background-position: right -15px;
+}
+.index-wrapper .aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  max-width: 500px;
+  background: #59a0b0;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .aside {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    max-width: none;
+  }
+}
+.index-wrapper .info-card {
+  position: absolute;
+  margin-top: 70%;
+  text-align: center;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .info-card {
+    margin-top: 70px;
+  }
+}
+.index-wrapper .info-card h1 {
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 80px rgba(255,255,255,0.5);
+  letter-spacing: 0.15em;
+  text-shadow: rgba(255,255,255,0.5) 0 0 15px, rgba(255,255,255,0.5) 0 0 10px;
+}
+.index-wrapper .info-card a {
+  margin: 0 15px;
+}
+.index-wrapper .index-content {
+  margin-left: 30%;
+  padding-top: 80px;
+  padding-right: 15%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .index-content {
+    margin-left: 0;
+    padding-right: 0;
+  }
+}
+.index-wrapper .artical-list {
+  width: 70%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .artical-list {
+    width: 85%;
+  }
+}
+.index-wrapper .artical-list li {
+  margin-bottom: 70px;
+}
+.index-wrapper .title {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 15px;
+  word-break: break-all;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+  color: #444;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+.index-wrapper .title:hover {
+  color: #e50053;
+  text-decoration: none;
+}
+.index-wrapper .title-desc {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.body-post {
+  background: #f5f5f5;
+}
+@media screen and (max-width: 767px) {
+  .body-post {
+    background: #fff;
+  }
+}
+.post-wrapper {
+  width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 80px 60px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper {
+    width: 85%;
+    margin: 100px auto 50px;
+    padding: 0;
+  }
+}
+.post-wrapper .post-title,
+.post-wrapper .post-title a {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #000;
+  text-align: center;
+  word-wrap: break-word;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-title,
+  .post-wrapper .post-title a {
+    font-size: 24px;
+  }
+}
+.post-wrapper .post-title:hover,
+.post-wrapper .post-title a:hover {
+  text-decoration: none;
+}
+.post-wrapper .post-date {
+  text-align: center;
+  color: #999;
+  margin-bottom: 60px;
+  font-size: 14px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-date {
+    margin-bottom: 40px;
+  }
+}
+.post-wrapper h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+@media $mobiel {
+  .post-wrapper h2 {
+    font-size: 20px;
+  }
+}
+.post-wrapper h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #222;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper h3 {
+    font-size: 16px;
+  }
+}
+.post-wrapper h4,
+.post-wrapper h5,
+.post-wrapper h6 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.post-wrapper p {
+  margin-bottom: 40px;
+  line-height: 1.8em;
+}
+.post-wrapper code {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0 5px;
+  font-family: "Courier";
+  line-height: 14px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.post-wrapper pre {
+  background: #f7f3f7;
+  padding: 20px 30px 15px;
+  overflow: auto;
+  margin-bottom: 40px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  color: #b9bdb6;
+  margin-top: -20px;
+}
+.post-wrapper pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  word-wrap: normal;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper pre code {
+    line-height: 1em;
+    font-size: 12px;
+  }
+}
+.post-wrapper h4+pre,
+.post-wrapper h3+pre {
+  margin-top: 20px;
+}
+.post-wrapper ul {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ul li {
+  margin-bottom: 5px;
+  list-style: disc;
+  line-height: 1.8em;
+}
+.post-wrapper p + ul {
+  margin-top: -20px;
+}
+.post-wrapper ol {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ol li {
+  margin-bottom: 5px;
+  list-style: decimal;
+  line-height: 1.1em;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper ol li {
+    margin-bottom: 0;
+    line-height: 1em;
+  }
+}
+.post-wrapper blockquote {
+  margin-left: 25px;
+  font-size: 14px;
+  font-style: italic;
+}
+.post-wrapper img {
+  max-width: 670px;
+  display: block;
+  margin: 10px auto;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper img {
+    max-width: 90%;
+  }
+}
+.post-wrapper table {
+  margin: 0 auto;
+}
+.about-wrapper {
+  background: #7e96a9;
+  width: 900px;
+  margin: 0 auto;
+  padding: 30px 60px;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper {
+    width: 100%;
+    padding: 0 7.5% 30px;
+  }
+}
+.about-wrapper .aboutme {
+  zoom: 1;
+}
+.about-wrapper .aboutme:before,
+.about-wrapper .aboutme:after {
+  content: "";
+  display: table;
+}
+.about-wrapper .aboutme:after {
+  clear: both;
+}
+.about-wrapper .aboutme h2 {
+  margin-bottom: 20px;
+}
+.about-wrapper .aboutme h2 a {
+  font-size: 18px;
+}
+.about-wrapper .aboutme li {
+  line-height: 1.4;
+  margin-bottom: 10px;
+  float: left;
+  width: 50%;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper .aboutme li {
+    float: none;
+    width: 80%;
+  }
+}
+.about-wrapper .aboutme a {
+  color: #fff;
+  font-size: 14px;
+}
+#particles-js {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 20%;
+  -moz-background-size: 20%;
+  background-size: 20%;
+  background-position: 50% 50%;
+  background: #38658c;
+  background: -webkit-radial-gradient(top left, #5d3571, #38658c);
+  background: -moz-radial-gradient(top left, #5d3571, #38658c);
+  background: -o-radial-gradient(top left, #5d3571, #38658c);
+  background: -ms-radial-gradient(top left, #5d3571, #38658c);
+  background: radial-gradient(to bottom right, #5d3571, #38658c);
+}
+#disqus_container {
+  font-size: 12px;
+}
+#disqus_container .share-con {
+  float: right;
+  margin-bottom: 20px;
+}
+#disqus_container a.comment {
+  font-size: 14px;
+}
+.prettyprint {
+  background: #f7f3f7;
+  border: 0 !important;
+}
+.pln {
+  color: #1b181b;
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #5a7b8c;
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 0.4em;
+  background-color: #f7f3f7;
+  list-style-type: decimal;
+}
+@media screen {
+  .str {
+    color: #918b3b;
+  }
+  .kwd {
+    color: #7b59c0;
+  }
+  .com {
+    color: #5a7b8c;
+  }
+  .typ {
+    color: #516aec;
+  }
+  .lit {
+    color: #a65926;
+  }
+  .pun {
+    color: #1b181b;
+  }
+  .opn {
+    color: #1b181b;
+  }
+  .clo {
+    color: #1b181b;
+  }
+  .tag {
+    color: #ca402b;
+  }
+  .atn {
+    color: #a65926;
+  }
+  .atv {
+    color: #159393;
+  }
+  .dec {
+    color: #a65926;
+  }
+  .var {
+    color: #ca402b;
+  }
+  .fun {
+    color: #516aec;
+  }
+}
+.wiki h2 {
+  cursor: pointer;
+}
+.wiki ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  list-style: disc;
+}
+.wiki ul li {
+  margin-bottom: 5px;
+}
+.wiki ul ul {
+  list-style: circle;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+</style>
+  </head>
+
+  <body class="body-post">
+  <div class="post-wrapper">
+    <h1 class="post-title"><a href="/my-blog" title="博客搭建记录">博客搭建记录</a></h1>
+    <p class="post-date">2017-05-23</p>
+    <p>主要记录一下这个博客的诞生。</p>
+
+<p>看到可以直接用github搭建自己的独立博客，就想弄一个，所以就去搜索了一下，自己条件原因没翻墙，所以很多情况都是坑，几经折腾。</p>
+
+<p>我自己的环境是win10系统，没翻墙，所以本篇仅仅是做个记录，而不作为参考。</p>
+
+<p>主要分为几个部分：</p>
+<ol>
+  <li>配置ssh key使得github远程仓库与本地文件建立联系</li>
+  <li>利用Github Pages建立博客项目</li>
+  <li>购买/绑定域名</li>
+  <li>使用jekyll搭建博客文件目录，管理内容</li>
+</ol>
+
+<h3 id="配置与使用github">配置与使用github</h3>
+
+<p>我们既然是依赖于github，那么首先就要配置好github。
+我们使用git来做操作，所以要先下载安装git，这里不再赘述。</p>
+
+<p>安装好以后，右击鼠标选择打开Git Bash</p>
+
+<p><strong>1.检查SSH key</strong></p>
+
+<p>ssh key就是进行连接认证的一个加密串。你要想用git连接上自己的远程仓库，就需要有这个东西。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ cd  ~/.ssh
+</code></pre>
+</div>
+
+<p>检查电脑上的ssh,在<code class="highlighter-rouge">C:/用户/用户名/.ssh/</code>可以看到.</p>
+
+<p>如果显示“No such file or directory”则说明之前本地没有进行过链接，直接跳到第三步</p>
+
+<p><strong>2.备份和移除原来的ssh key设置</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ls
+config id_rsa id_rsa.pub known_hosts
+$ mkdir key_backup
+$ cp id_rsa* key_backup
+$ rm id_rsa*
+</code></pre>
+</div>
+
+<p><strong>3.生成新的ssh key</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ ssh-keygen -t rsa -C "邮件地址@youremail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key(Users/your_user_directory/.ssh/di_rsa):&lt;回车就好&gt;
+</code></pre>
+</div>
+
+<p>然后系统会要求输入加密串（Passphrase）:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;
+Enter same passphrase again:&lt;再次输入加密串&gt;
+</code></pre>
+</div>
+
+<p>最后看到这样的界面，就成功设置了ssh key：
+<img src="/images/githubpages/ssh-key-set.png" alt="image" /></p>
+
+<p><strong>4.添加ssh key到github</strong></p>
+
+<p>进入到<code class="highlighter-rouge">C:/用户/用户名/.ssh/</code>找到id_ras.pub文件，打开复制里面生成的key</p>
+
+<p>然后打开github，在头像点击一下进入settings,然后在左侧栏点击SSH and GPG keys，在SSH keys 栏目中点击New SSH key按钮，然后填入自定义title再粘贴ssh key提交完成。</p>
+
+<p><strong>5、设置你的账号信息</strong></p>
+
+<p>现在你已经可以通过SSH链接到GitHub了，还有一些个人信息需要完善的。</p>
+
+<p>Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ git config --global user.name "你的名字"
+$ git config --global user.email "your_email@youremail.com"
+</code></pre>
+</div>
+
+<blockquote>
+  <p>我做以上步骤的时候因为事先进行过git工具的安装，所以它已经帮我设置好了ssh key，我就没有自己再去弄ssh key，另外因为时间的原因可能有些细节部分可能会与现状的一些操作有所差别，所以有坑不填。</p>
+</blockquote>
+
+<h3 id="使用github-pages建立博客">使用Github Pages建立博客</h3>
+
+<p>使用Github Pages建立博客非常简单，进入 <a href="https://pages.github.com/"> Github Pages</a>的官网主页，然后就有介绍怎么建立自己的项目。</p>
+
+<p><strong>User or Organizatioin Pages</strong></p>
+
+<p>Github  Pages里面支持的项目分为两类，一种是个人博客主页，一个账号仅限对应的一个。另一种是项目展示，需要我们建立gh-pages的分支来展示。在这里，我们当然是第一种。</p>
+
+<p>新建一个项目，然后命名为<code class="highlighter-rouge">username.github.io</code>注意，这里的username就是你的用户名,要完全一致,github会根据这个名字识别为用户主页项目，所以，不要搞错。</p>
+
+<p>创建好这个项目以后，提交一个index.html，随便添加一些内容，再访问<code class="highlighter-rouge">username.github.io</code>就可以看到你的主页，就是这么神奇，一切都由github提供支持，赞美github.</p>
+
+<h3 id="购买绑定域名">购买/绑定域名</h3>
+
+<p>对，我们要建立自己的博客，连域名都要是独一无二的。</p>
+
+<p><strong>1.购买域名</strong></p>
+
+<p>购买域名的地方很多，<a href="https://wanwang.aliyun.com/">万网</a>，<a href="https://dcc.godaddy.com/">Godaddy</a>.我入的是后者，因为境外的，所以我跟着教程弄个国内的<a href="https://www.dnspod.cn/">DNSPOD</a>域名解析.万网是阿里的，所以就没必要域名解析了。</p>
+
+<p>购买域名就不多说，选好了给钱就行。我们购买好了域名以后注册DNSPOD，登录，在域名解析栏目下添加域名</p>
+
+<p>DNSPOD域名解析三部曲：</p>
+<ol>
+  <li>添加域名记录，<a href="https://www.dnspod.cn/Support">新手指南</a></li>
+  <li>在域名下添加一条新的A记录，地址为Github提供的服务地址<code class="highlighter-rouge">192.30.252.153</code>，这个地址可能会有变动，具体参考<a href="https://help.github.com/articles/my-custom-domain-isn-t-working">这里</a></li>
+  <li>然后返回godaddy去修改DNS管理的服务商地址，默认是godaddy自己提供的解析，但是因为有墙，所以才需要更改。帮助看<a href="https://www.dnspod.cn/support/index/fid/119">这里</a>
+4.等待生效，最迟要72个小时，当时等得我心碎</li>
+</ol>
+
+<blockquote>
+  <p>godaddy修改DNS地址的地方在用户名下拉菜单》我的产品》域名》管理DNS</p>
+</blockquote>
+
+<p><strong>绑定域名</strong></p>
+
+<p>绑定域名很简单，在你的博客根目录下，建立一个DNAME的文件，然后填入你的域名.再提交到github，就好了。</p>
+
+<h3 id="jekyll">Jekyll</h3>
+
+<p>Jekyll官方是不建议在windows系统下使用的，但没办法，条件受限。</p>
+
+<p><strong>安装Ruby</strong></p>
+
+<p>首页，因为jekyll依赖Ruby，所以我们要先安装<a href="http://rubyinstaller.org/downloads/">Ruby</a>,windows下都是傻瓜式安装，但要注意我们安装时候要选择添加到环境变量中</p>
+
+<p><img src="/images/githubpages/windows-ruby-install.png" alt="image" /></p>
+
+<p>安装完毕后,可以用<code class="highlighter-rouge">ruby -v</code>查看版本以检测是否安装成功</p>
+
+<p><strong>安装Ruby DevKit</strong></p>
+
+<p>因为windows系统不带Ruby编译，所以我们要安装<a href="https://rubyinstaller.org/downloads/">Ruby DevKit</a>，下载，解压。</p>
+
+<p>然后运行一下命令</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ruby dk.rb init
+ruby dk.rb install
+</code></pre>
+</div>
+
+<p>成功后，就可以直接安装jekyll了,但因为我没有翻墙，所以需要引用国内的镜像，由ruby-china提供,具体操作看<a href="http://gems.ruby-china.org/">镜像</a></p>
+
+<p>修改好镜像后，我们就可以安装jekyll了</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gem install jekyll
+</code></pre>
+</div>
+
+<p>如果修改镜像出现不明原因证书引用错误，那么直接引用<code class="highlighter-rouge">http://gems.ruby-china.org</code>,避免SSL问题</p>
+
+<p>安装好以后，我们就可以在本地跑一下试试</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll serve --watch
+</code></pre>
+</div>
+
+<p>如果不报错的话，就可以在本地的4000端口看到博客主页了。</p>
+
+<p>参考：</p>
+
+<p><a href="http://beiyuu.com/github-pages">使用Github Pages建独立博客</a></p>
+
+<p><a href="https://www.douban.com/note/497241105/">windows环境下安装jekyll</a></p>
+
+
+    <div id="disqus_container">
+  <div class="share-con">
+    
+  </div>
+
+  <!--<a href="#" class="comment" onclick="return false;">点击查看评论</a>-->
+  <div id="disqus_thread"></div>
+</div>
+
+  </div>
+
+  <div class="about-wrapper">
+  <!--<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1855270953&verifier=375b89d6&dpc=1" style="margin: 30px 0;"></iframe>-->
+
+  <div class="aboutme">
+    <h2><a href="/">所有文章</a></h2>
+    <ul>
+      
+      <li>
+        <a href="/Shannon-and-CFS" class="title">学习篇（一）</a>
+      </li>
+      
+      <li>
+        <a href="/DOM2" class="title">DOM2</a>
+      </li>
+      
+      <li>
+        <a href="/Dom-extend" class="title">DOM Extend</a>
+      </li>
+      
+      <li>
+        <a href="/my-blog" class="title">博客搭建记录</a>
+      </li>
+      
+      <li>
+        <a href="/DOM" class="title">DOM</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+  <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="/js/post.js" type="text/javascript"></script>
+</body>
+
+</html>

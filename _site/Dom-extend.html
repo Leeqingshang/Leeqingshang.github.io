@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM Extend | Lee</title>
+    <meta name="author" content="Lee" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Lee's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/blog.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <style>html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]),
+[hidden] {
+  display: none;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+  font-family: Helvetica, Tahoma, Arial, 'Hiragino Sans GB', '\51AC\9752\9ED1\4F53', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', STXihei, '\534E\6587\7EC6\9ED1', SimSun, '\5B8B\4F53', Heiti, '\9ED1\4F53', sans-serif;
+  font-size: 16px;
+}
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+}
+a {
+  color: #4a75b5;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a.external {
+  padding-right: 13px;
+  background: url("/images/icons.gif") no-repeat right 1px;
+}
+a.external:hover {
+  background-position: right -15px;
+}
+.index-wrapper .aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  max-width: 500px;
+  background: #59a0b0;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .aside {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    max-width: none;
+  }
+}
+.index-wrapper .info-card {
+  position: absolute;
+  margin-top: 70%;
+  text-align: center;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .info-card {
+    margin-top: 70px;
+  }
+}
+.index-wrapper .info-card h1 {
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 80px rgba(255,255,255,0.5);
+  letter-spacing: 0.15em;
+  text-shadow: rgba(255,255,255,0.5) 0 0 15px, rgba(255,255,255,0.5) 0 0 10px;
+}
+.index-wrapper .info-card a {
+  margin: 0 15px;
+}
+.index-wrapper .index-content {
+  margin-left: 30%;
+  padding-top: 80px;
+  padding-right: 15%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .index-content {
+    margin-left: 0;
+    padding-right: 0;
+  }
+}
+.index-wrapper .artical-list {
+  width: 70%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .artical-list {
+    width: 85%;
+  }
+}
+.index-wrapper .artical-list li {
+  margin-bottom: 70px;
+}
+.index-wrapper .title {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 15px;
+  word-break: break-all;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+  color: #444;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+.index-wrapper .title:hover {
+  color: #e50053;
+  text-decoration: none;
+}
+.index-wrapper .title-desc {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.body-post {
+  background: #f5f5f5;
+}
+@media screen and (max-width: 767px) {
+  .body-post {
+    background: #fff;
+  }
+}
+.post-wrapper {
+  width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 80px 60px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper {
+    width: 85%;
+    margin: 100px auto 50px;
+    padding: 0;
+  }
+}
+.post-wrapper .post-title,
+.post-wrapper .post-title a {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #000;
+  text-align: center;
+  word-wrap: break-word;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-title,
+  .post-wrapper .post-title a {
+    font-size: 24px;
+  }
+}
+.post-wrapper .post-title:hover,
+.post-wrapper .post-title a:hover {
+  text-decoration: none;
+}
+.post-wrapper .post-date {
+  text-align: center;
+  color: #999;
+  margin-bottom: 60px;
+  font-size: 14px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-date {
+    margin-bottom: 40px;
+  }
+}
+.post-wrapper h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+@media $mobiel {
+  .post-wrapper h2 {
+    font-size: 20px;
+  }
+}
+.post-wrapper h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #222;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper h3 {
+    font-size: 16px;
+  }
+}
+.post-wrapper h4,
+.post-wrapper h5,
+.post-wrapper h6 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.post-wrapper p {
+  margin-bottom: 40px;
+  line-height: 1.8em;
+}
+.post-wrapper code {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0 5px;
+  font-family: "Courier";
+  line-height: 14px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.post-wrapper pre {
+  background: #f7f3f7;
+  padding: 20px 30px 15px;
+  overflow: auto;
+  margin-bottom: 40px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  color: #b9bdb6;
+  margin-top: -20px;
+}
+.post-wrapper pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  word-wrap: normal;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper pre code {
+    line-height: 1em;
+    font-size: 12px;
+  }
+}
+.post-wrapper h4+pre,
+.post-wrapper h3+pre {
+  margin-top: 20px;
+}
+.post-wrapper ul {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ul li {
+  margin-bottom: 5px;
+  list-style: disc;
+  line-height: 1.8em;
+}
+.post-wrapper p + ul {
+  margin-top: -20px;
+}
+.post-wrapper ol {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ol li {
+  margin-bottom: 5px;
+  list-style: decimal;
+  line-height: 1.1em;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper ol li {
+    margin-bottom: 0;
+    line-height: 1em;
+  }
+}
+.post-wrapper blockquote {
+  margin-left: 25px;
+  font-size: 14px;
+  font-style: italic;
+}
+.post-wrapper img {
+  max-width: 670px;
+  display: block;
+  margin: 10px auto;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper img {
+    max-width: 90%;
+  }
+}
+.post-wrapper table {
+  margin: 0 auto;
+}
+.about-wrapper {
+  background: #7e96a9;
+  width: 900px;
+  margin: 0 auto;
+  padding: 30px 60px;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper {
+    width: 100%;
+    padding: 0 7.5% 30px;
+  }
+}
+.about-wrapper .aboutme {
+  zoom: 1;
+}
+.about-wrapper .aboutme:before,
+.about-wrapper .aboutme:after {
+  content: "";
+  display: table;
+}
+.about-wrapper .aboutme:after {
+  clear: both;
+}
+.about-wrapper .aboutme h2 {
+  margin-bottom: 20px;
+}
+.about-wrapper .aboutme h2 a {
+  font-size: 18px;
+}
+.about-wrapper .aboutme li {
+  line-height: 1.4;
+  margin-bottom: 10px;
+  float: left;
+  width: 50%;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper .aboutme li {
+    float: none;
+    width: 80%;
+  }
+}
+.about-wrapper .aboutme a {
+  color: #fff;
+  font-size: 14px;
+}
+#particles-js {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 20%;
+  -moz-background-size: 20%;
+  background-size: 20%;
+  background-position: 50% 50%;
+  background: #38658c;
+  background: -webkit-radial-gradient(top left, #5d3571, #38658c);
+  background: -moz-radial-gradient(top left, #5d3571, #38658c);
+  background: -o-radial-gradient(top left, #5d3571, #38658c);
+  background: -ms-radial-gradient(top left, #5d3571, #38658c);
+  background: radial-gradient(to bottom right, #5d3571, #38658c);
+}
+#disqus_container {
+  font-size: 12px;
+}
+#disqus_container .share-con {
+  float: right;
+  margin-bottom: 20px;
+}
+#disqus_container a.comment {
+  font-size: 14px;
+}
+.prettyprint {
+  background: #f7f3f7;
+  border: 0 !important;
+}
+.pln {
+  color: #1b181b;
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #5a7b8c;
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 0.4em;
+  background-color: #f7f3f7;
+  list-style-type: decimal;
+}
+@media screen {
+  .str {
+    color: #918b3b;
+  }
+  .kwd {
+    color: #7b59c0;
+  }
+  .com {
+    color: #5a7b8c;
+  }
+  .typ {
+    color: #516aec;
+  }
+  .lit {
+    color: #a65926;
+  }
+  .pun {
+    color: #1b181b;
+  }
+  .opn {
+    color: #1b181b;
+  }
+  .clo {
+    color: #1b181b;
+  }
+  .tag {
+    color: #ca402b;
+  }
+  .atn {
+    color: #a65926;
+  }
+  .atv {
+    color: #159393;
+  }
+  .dec {
+    color: #a65926;
+  }
+  .var {
+    color: #ca402b;
+  }
+  .fun {
+    color: #516aec;
+  }
+}
+.wiki h2 {
+  cursor: pointer;
+}
+.wiki ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  list-style: disc;
+}
+.wiki ul li {
+  margin-bottom: 5px;
+}
+.wiki ul ul {
+  list-style: circle;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+</style>
+  </head>
+
+  <body class="body-post">
+  <div class="post-wrapper">
+    <h1 class="post-title"><a href="/Dom-extend" title="DOM Extend">DOM Extend</a></h1>
+    <p class="post-date">2017-05-25</p>
+    <p>2008年由w3c设立统一标准，之前都是各家乱战。</p>
+
+<h3 id="标准扩展">标准扩展</h3>
+
+<p><strong>选择器扩展</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>someElement.querySelector();
+</code></pre>
+</div>
+
+<p>获取符合选择条件的元素集合的第一个元素，传入参数为筛选条件，可以是各种选择符，相当强大。可以由document或者eLement调用</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>someElement.querySelectorAll();
+</code></pre>
+</div>
+
+<p>获取符合条件的元素集合，本质上是一个附带元素属性方法的NodeList,但在实现上却不是跟<code class="highlighter-rouge">document.getElentsByTagName()</code>返回类似的动态集合，而是一个集合当前情况的快照。</p>
+
+<p>IE里定义了一个<code class="highlighter-rouge">matchesSelector()</code>方法，用户检测一个元素是否会被<code class="highlighter-rouge">querySelector()</code>与<code class="highlighter-rouge">querySelectorAll()</code>方法返回，具体见<a href="https://github.com/Lijiazhen/Js-note/blob/gh-pages/dom.js">内置文档</a></p>
+
+<p><strong>元素遍历</strong></p>
+
+<p>因为IE9之前与其他浏览器下进行元素遍历时对文本节点的实现（IE不会返回文本节点）不一致,所以重新定义了一组属性</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>someNode.firstElementChild //返回第一个子元素
+someNode.lastElementChild //返回最后一个子元素
+someNode.nextElementSibling //返回下一个兄弟元素
+someNode.previousElementSibling //返回上一个兄弟元素
+someNode.childElementCount  //返回子元素的个数
+</code></pre>
+</div>
+
+<p><strong>classList</strong></p>
+
+<p>在DOM1级中，我们要对元素的class属性进行操作,只有使用<code class="highlighter-rouge">getAttribute()</code>方法或者使用<code class="highlighter-rouge">className</code>属性获得元素的class属性值后再进行字符串操作，但这样太麻烦，所以在DOM EXTEND里面，重新定义了classList属性及附带方法</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>someElement.classList.add(class);//添加新的类名
+someElement.classList.remove(class);//移除类名
+someElement.classList.toggle(class);//有则移除，无则添加
+someElement.classList.contains(class);//是否包含有给定的类名
+</code></pre>
+</div>
+
+<p>classList IE9+支持</p>
+
+<p><strong>getElementsByClassName()</strong></p>
+
+<p>可用document或者element来调用，传入类名不分先后</p>
+
+<p>IE9+支持</p>
+
+<p><strong>焦点管理</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.activeElement//获取当前焦点所在元素,默认为body
+someElement.focus()//使元素获得焦点
+document.hansFocus();//判断文档是否获得焦点，可以此判断用户是否在与页面进行交互
+</code></pre>
+</div>
+
+<p><strong>HTMLDocument的变化</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.readyState//文档的加载状态
+</code></pre>
+</div>
+
+<p>有两个取值<code class="highlighter-rouge">loading</code>正在加载，文档与<code class="highlighter-rouge">complete</code>已经加载完毕</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.compatMode//文档模式
+</code></pre>
+</div>
+
+<p>返回<code class="highlighter-rouge">BackCompat</code>为混合模式，返回<code class="highlighter-rouge">css1Compat</code>为标准模式</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.charset//文档当前使用的字符集
+document.defaultCharset//默认的字符集
+</code></pre>
+</div>
+
+<p>通过这两个属性可以得到文档使用的字符编码的具体信息，也能对字符编码进行准确的控制。</p>
+
+<blockquote>
+  <p>HTML5扩展中规定，自定义属性要加上data前缀</p>
+</blockquote>
+
+<p><strong>innerHTML标记插入</strong></p>
+
+<p>在DOM1级的时候,我们添加元素使用<code class="highlighter-rouge">appendChild()</code>方法，但构建元素结构的过程有些繁琐。所以有了innerHTML属性.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>element.innerHTML
+</code></pre>
+</div>
+
+<p>在读模式下，这个属性会返回调用元素的所有子元素标签，包括元素，文本，注释</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>element.innerHTML="&lt;div&gt;this is a childElement.&lt;/div&gt;"
+</code></pre>
+</div>
+
+<p>在写模式下，这个属性会重写调用元素的节点树。</p>
+
+<p>值得注意的一点是，<em>不是所有浏览器对这个属性的读模式实现是相同的</em>,另外，IE8下在使用<code class="highlighter-rouge">innerHTML</code>属性进行写模式时，判定<code class="highlighter-rouge">&lt;script&gt;&lt;/script&gt;</code>与<code class="highlighter-rouge">&lt;style&gt;&lt;/style&gt;</code>为无作用域元素（也就是在页面上不可见的元素），要插入这类元素有三种方法：</p>
+
+<ol>
+  <li>必须在其前面添加有意义的文本或者符号，过后再删除</li>
+  <li>用一个容器包裹起来，并且这个容器本身要有内容</li>
+  <li>使用<code class="highlighter-rouge">&lt;input type="hidden"  /&gt;</code>来包裹这些无作用域元素。</li>
+</ol>
+
+<p>因为前两种方法过后还用想办法清除前置文本字符或包裹元素所以推荐的是第三种方法</p>
+
+<blockquote>
+  <p>并不是所有元素都支持这个属性</p>
+</blockquote>
+
+<p>在使用<code class="highlighter-rouge">innerHTML</code>进行标记插入时最好要检查插入标记的正确性，IE8为此提供了<code class="highlighter-rouge">window.toStaticHTML()</code>,这个文档传入一个HTML字符串，返回一个处理后符合标准的版本。</p>
+
+<p><strong>outerHTML属性</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>element.outerHTML
+</code></pre>
+</div>
+
+<p>同<code class="highlighter-rouge">innerHTML</code>类似，获取元素的集合，但outerHTML是返回包括调用本身在内的集合</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>element.outerHTML="&lt;div&gt;this is div.&lt;/div&gt;"
+</code></pre>
+</div>
+
+<p>如果用 <code class="highlighter-rouge">outerHTML</code>进行写模式的话，则相当于会把调用元素替换掉</p>
+
+<p><strong>insertAdjacentHTML()方法</strong></p>
+
+<p>这是最后一个插入标记的方法，记住，这是方法.
+有两个参数，插入位置与要插入的html文本。插入位置必须是以下四个值之一。</p>
+
+<ol>
+  <li>“beforebegin”,在当前元素之前插入一个紧邻的同辈元素。</li>
+  <li>“afterbegin”,在当前元素的第一个子元素之前插入一个新的元素</li>
+  <li>“beforeend”,在当前元素的最后一个子元素之后插入一个新的元素</li>
+  <li>“afterend”,在当前元素之后插入一个紧邻的同辈元素</li>
+</ol>
+
+<p>需要注意的是这个参数都是小写</p>
+
+<p>三个插入文档的属性/方法都已经介绍，<strong>在插入标记前最好是检查元素的正确性，而写模式下最好先手动删除要被替换的元素的所有处理事件</strong></p>
+
+<p><strong>scrollIntoView()方法</strong></p>
+
+<p>可以在所有HTML元素上调用，参数为<code class="highlighter-rouge">true</code>或<code class="highlighter-rouge">false</code>.当参数为true时，会尽量让元素与视窗顶部平齐。如果参数是false，则会让元素完全显示出来。见<a href="">scrollIntoView</a></p>
+
+<h3 id="专有扩展">专有扩展</h3>
+
+<p>还有一些非标准的扩展</p>
+
+<p><strong>文档模式</strong></p>
+
+<p>前面我们说标准扩展里有一个兼容模式<code class="highlighter-rouge">document.compatMode</code>.而IE里获取文档模式可以用以下属性</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.documentMode;
+</code></pre>
+</div>
+
+<p><strong>children属性</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var childCount=element.children.length;
+var firstChild=element.children[0]
+</code></pre>
+</div>
+
+<p>children这个属性现在基本已经可以拿来做通用，只不过IE8及之前版本中会的返回会包括注释节点，而IE9及以后的就只返回元素节点</p>
+
+<p><strong>contains()方法</strong></p>
+
+<p>IE最先引入的方法，用于检测传入元素是否是调用元素的子节点，是返回ture,不是返回false;DOM level 3中的 <code class="highlighter-rouge">compareDocumentPositin()</code>也能确定节点间的关系。通用方法见<a href="https://github.com/Lijiazhen/Js-note/blob/gh-pages/dom.js">内置文档</a></p>
+
+<p><strong>插入文本</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>element.innerText
+element.outerText
+</code></pre>
+</div>
+
+<p>基本跟innerTHML的概念差不多，只不过火狐不支持这个属性,所以还是写个通用，见<a href="https://github.com/Lijiazhen/Js-note/blob/gh-pages/dom.js">内置文档</a></p>
+
+
+    <div id="disqus_container">
+  <div class="share-con">
+    
+  </div>
+
+  <!--<a href="#" class="comment" onclick="return false;">点击查看评论</a>-->
+  <div id="disqus_thread"></div>
+</div>
+
+  </div>
+
+  <div class="about-wrapper">
+  <!--<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1855270953&verifier=375b89d6&dpc=1" style="margin: 30px 0;"></iframe>-->
+
+  <div class="aboutme">
+    <h2><a href="/">所有文章</a></h2>
+    <ul>
+      
+      <li>
+        <a href="/Shannon-and-CFS" class="title">学习篇（一）</a>
+      </li>
+      
+      <li>
+        <a href="/DOM2" class="title">DOM2</a>
+      </li>
+      
+      <li>
+        <a href="/Dom-extend" class="title">DOM Extend</a>
+      </li>
+      
+      <li>
+        <a href="/my-blog" class="title">博客搭建记录</a>
+      </li>
+      
+      <li>
+        <a href="/DOM" class="title">DOM</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+  <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="/js/post.js" type="text/javascript"></script>
+</body>
+
+</html>

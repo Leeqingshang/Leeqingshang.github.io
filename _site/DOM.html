@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM | Lee</title>
+    <meta name="author" content="Lee" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Lee's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/blog.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <style>html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]),
+[hidden] {
+  display: none;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+  font-family: Helvetica, Tahoma, Arial, 'Hiragino Sans GB', '\51AC\9752\9ED1\4F53', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', STXihei, '\534E\6587\7EC6\9ED1', SimSun, '\5B8B\4F53', Heiti, '\9ED1\4F53', sans-serif;
+  font-size: 16px;
+}
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+}
+a {
+  color: #4a75b5;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a.external {
+  padding-right: 13px;
+  background: url("/images/icons.gif") no-repeat right 1px;
+}
+a.external:hover {
+  background-position: right -15px;
+}
+.index-wrapper .aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  max-width: 500px;
+  background: #59a0b0;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .aside {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    max-width: none;
+  }
+}
+.index-wrapper .info-card {
+  position: absolute;
+  margin-top: 70%;
+  text-align: center;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .info-card {
+    margin-top: 70px;
+  }
+}
+.index-wrapper .info-card h1 {
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 80px rgba(255,255,255,0.5);
+  letter-spacing: 0.15em;
+  text-shadow: rgba(255,255,255,0.5) 0 0 15px, rgba(255,255,255,0.5) 0 0 10px;
+}
+.index-wrapper .info-card a {
+  margin: 0 15px;
+}
+.index-wrapper .index-content {
+  margin-left: 30%;
+  padding-top: 80px;
+  padding-right: 15%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .index-content {
+    margin-left: 0;
+    padding-right: 0;
+  }
+}
+.index-wrapper .artical-list {
+  width: 70%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .artical-list {
+    width: 85%;
+  }
+}
+.index-wrapper .artical-list li {
+  margin-bottom: 70px;
+}
+.index-wrapper .title {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 15px;
+  word-break: break-all;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+  color: #444;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+.index-wrapper .title:hover {
+  color: #e50053;
+  text-decoration: none;
+}
+.index-wrapper .title-desc {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.body-post {
+  background: #f5f5f5;
+}
+@media screen and (max-width: 767px) {
+  .body-post {
+    background: #fff;
+  }
+}
+.post-wrapper {
+  width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 80px 60px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper {
+    width: 85%;
+    margin: 100px auto 50px;
+    padding: 0;
+  }
+}
+.post-wrapper .post-title,
+.post-wrapper .post-title a {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #000;
+  text-align: center;
+  word-wrap: break-word;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-title,
+  .post-wrapper .post-title a {
+    font-size: 24px;
+  }
+}
+.post-wrapper .post-title:hover,
+.post-wrapper .post-title a:hover {
+  text-decoration: none;
+}
+.post-wrapper .post-date {
+  text-align: center;
+  color: #999;
+  margin-bottom: 60px;
+  font-size: 14px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-date {
+    margin-bottom: 40px;
+  }
+}
+.post-wrapper h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+@media $mobiel {
+  .post-wrapper h2 {
+    font-size: 20px;
+  }
+}
+.post-wrapper h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #222;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper h3 {
+    font-size: 16px;
+  }
+}
+.post-wrapper h4,
+.post-wrapper h5,
+.post-wrapper h6 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.post-wrapper p {
+  margin-bottom: 40px;
+  line-height: 1.8em;
+}
+.post-wrapper code {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0 5px;
+  font-family: "Courier";
+  line-height: 14px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.post-wrapper pre {
+  background: #f7f3f7;
+  padding: 20px 30px 15px;
+  overflow: auto;
+  margin-bottom: 40px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  color: #b9bdb6;
+  margin-top: -20px;
+}
+.post-wrapper pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  word-wrap: normal;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper pre code {
+    line-height: 1em;
+    font-size: 12px;
+  }
+}
+.post-wrapper h4+pre,
+.post-wrapper h3+pre {
+  margin-top: 20px;
+}
+.post-wrapper ul {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ul li {
+  margin-bottom: 5px;
+  list-style: disc;
+  line-height: 1.8em;
+}
+.post-wrapper p + ul {
+  margin-top: -20px;
+}
+.post-wrapper ol {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ol li {
+  margin-bottom: 5px;
+  list-style: decimal;
+  line-height: 1.1em;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper ol li {
+    margin-bottom: 0;
+    line-height: 1em;
+  }
+}
+.post-wrapper blockquote {
+  margin-left: 25px;
+  font-size: 14px;
+  font-style: italic;
+}
+.post-wrapper img {
+  max-width: 670px;
+  display: block;
+  margin: 10px auto;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper img {
+    max-width: 90%;
+  }
+}
+.post-wrapper table {
+  margin: 0 auto;
+}
+.about-wrapper {
+  background: #7e96a9;
+  width: 900px;
+  margin: 0 auto;
+  padding: 30px 60px;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper {
+    width: 100%;
+    padding: 0 7.5% 30px;
+  }
+}
+.about-wrapper .aboutme {
+  zoom: 1;
+}
+.about-wrapper .aboutme:before,
+.about-wrapper .aboutme:after {
+  content: "";
+  display: table;
+}
+.about-wrapper .aboutme:after {
+  clear: both;
+}
+.about-wrapper .aboutme h2 {
+  margin-bottom: 20px;
+}
+.about-wrapper .aboutme h2 a {
+  font-size: 18px;
+}
+.about-wrapper .aboutme li {
+  line-height: 1.4;
+  margin-bottom: 10px;
+  float: left;
+  width: 50%;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper .aboutme li {
+    float: none;
+    width: 80%;
+  }
+}
+.about-wrapper .aboutme a {
+  color: #fff;
+  font-size: 14px;
+}
+#particles-js {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 20%;
+  -moz-background-size: 20%;
+  background-size: 20%;
+  background-position: 50% 50%;
+  background: #38658c;
+  background: -webkit-radial-gradient(top left, #5d3571, #38658c);
+  background: -moz-radial-gradient(top left, #5d3571, #38658c);
+  background: -o-radial-gradient(top left, #5d3571, #38658c);
+  background: -ms-radial-gradient(top left, #5d3571, #38658c);
+  background: radial-gradient(to bottom right, #5d3571, #38658c);
+}
+#disqus_container {
+  font-size: 12px;
+}
+#disqus_container .share-con {
+  float: right;
+  margin-bottom: 20px;
+}
+#disqus_container a.comment {
+  font-size: 14px;
+}
+.prettyprint {
+  background: #f7f3f7;
+  border: 0 !important;
+}
+.pln {
+  color: #1b181b;
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #5a7b8c;
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 0.4em;
+  background-color: #f7f3f7;
+  list-style-type: decimal;
+}
+@media screen {
+  .str {
+    color: #918b3b;
+  }
+  .kwd {
+    color: #7b59c0;
+  }
+  .com {
+    color: #5a7b8c;
+  }
+  .typ {
+    color: #516aec;
+  }
+  .lit {
+    color: #a65926;
+  }
+  .pun {
+    color: #1b181b;
+  }
+  .opn {
+    color: #1b181b;
+  }
+  .clo {
+    color: #1b181b;
+  }
+  .tag {
+    color: #ca402b;
+  }
+  .atn {
+    color: #a65926;
+  }
+  .atv {
+    color: #159393;
+  }
+  .dec {
+    color: #a65926;
+  }
+  .var {
+    color: #ca402b;
+  }
+  .fun {
+    color: #516aec;
+  }
+}
+.wiki h2 {
+  cursor: pointer;
+}
+.wiki ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  list-style: disc;
+}
+.wiki ul li {
+  margin-bottom: 5px;
+}
+.wiki ul ul {
+  list-style: circle;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+</style>
+  </head>
+
+  <body class="body-post">
+  <div class="post-wrapper">
+    <h1 class="post-title"><a href="/DOM" title="DOM">DOM</a></h1>
+    <p class="post-date">2017-05-21</p>
+    <p>DOM(文档对象模型)是针对XML与HTML文档的一个API(应用 程序编程接口)。</p>
+
+<h3 id="101-节点层次">10.1 节点层次</h3>
+
+<p>DOM将文档描绘成一个由多层节点构成的结构。节点分为几种不同个类型，每种类型分别表示不同的信息及标记。每个节点都拥有自己的特点，数据与方法。</p>
+
+<h4 id="1011-node类型">10.1.1 Node类型</h4>
+
+<p>常用的这三个</p>
+
+<p>Node.ELEMENT_NODE(1);文档节点
+Node.ATTRIBUTE_NODE(2);属性节点
+Node.TEXT_NODE(3);文本节点</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>if(someNode.nodeType==1){
+     alert("Node is a element!");
+}
+</code></pre>
+</div>
+
+<p><strong>节点属性</strong></p>
+
+<p>nodeName 节点的名字</p>
+
+<p>nodeValue 节点的值</p>
+
+<p><strong>节点的关系</strong></p>
+
+<p>someNode.childNodes</p>
+
+<p>获取子节点的一个<code class="highlighter-rouge">NodeList</code>动态集合,可以用<code class="highlighter-rouge">someNode.childNodes.item(0)</code>或者<code class="highlighter-rouge">someNode.childNodes[0]</code>的方式访问具体某个子节点</p>
+
+<p>someNode.parentNode   获取父节点</p>
+
+<p>someNode.nextSibling  获取下一个兄弟节点</p>
+
+<p>someNode.previousSibling  获取上一个兄弟节点</p>
+
+<p>someNode.firstChild   获取第一个子节点</p>
+
+<p>someNode.lastChild    获取最后一个子节点</p>
+
+<p>当没有上一个或者下一个兄弟节点时，返回null</p>
+
+<p><strong>操作节点</strong></p>
+
+<p>someNode.appendChild(node);</p>
+
+<p>添加一个新节点到childNodes列表的末尾</p>
+
+<p>someNode.insertBefore(newNode,someChildNode);</p>
+
+<p>添加一个新节点到下属子节点的某个位置之前</p>
+
+<p>someNode.replaceChild(newNode,someChildNode);</p>
+
+<p>用一个新节点替换掉下属某个节点</p>
+
+<p>someNode.removeChild(node);</p>
+
+<p>移除下属某个子节点</p>
+
+<p>以上四个方法都是针对子元素操作，也就是说要先获取父元素才能进行下一步操作</p>
+
+<p>someNode.cloneNode(true/false);</p>
+
+<p>克隆某个节点，参数为布尔值，确定是否执行深度复制，即不光复制节点本身，包括子节点一起复制。IE甚至会复制节点上的处理事件。</p>
+
+<p>someNode.normalize();</p>
+
+<p>格式化文本，如果下属节点中有空白文本节点，则删除，如果有两个相邻文本节点，则合并。</p>
+
+<h4 id="102-document类型">10.2 Document类型</h4>
+
+<p>nodeType=9  nodeName=”#document” nodeValue=null</p>
+
+<p>document.getElementById(id);</p>
+
+<p>通过ID查找元素，返回一个节点</p>
+
+<p>document.getElmentsByName();</p>
+
+<p>通过name属性来查找元素，返回集合</p>
+
+<p>someElement.getElementsByTagName();</p>
+
+<p>通过标签名查找元素，返回一个<code class="highlighter-rouge">HTMLCollection</code>,可以通过item或者下标形式访问集合中的某个节点，还有个方法是nameItem(),等同于使用字符串下标访问</p>
+
+<p>document.documentElement   访问文档的根节点</p>
+
+<p>document.body              访问body</p>
+
+<p>document.URL               访问当前的URL</p>
+
+<p>document.domain            获取当前的域名</p>
+
+<p>document.referrer <br />
+获取调转到当前页面的上一个页面的URL</p>
+
+<p>document.forms</p>
+
+<p>获取文档中的所有form表单的集合</p>
+
+<p>document.links</p>
+
+<p>获取文档中所有带有href属性的a标签</p>
+
+<p>document.images</p>
+
+<p>获取文档中所有图片节点的集合</p>
+
+<p>document.implementation.hasFeature(“XML”,”1”);</p>
+
+<p>获取浏览器是否支持DOM某项功能，参数为名称与版本号</p>
+
+<p>document.write(); 写入到输出流</p>
+
+<p>document.writeIn();  写出到输出流并换行</p>
+
+<p>document.open();     打开一个输出流</p>
+
+<p>document.close();    关闭输出流</p>
+
+<p>XHTML不支持文档写入</p>
+
+<h4 id="103-element类型">10.3 Element类型</h4>
+
+<p>nodeName= 标签名</p>
+
+<p>nodeValue=null</p>
+
+<p>nodeType=1</p>
+
+<p>可以使用tagName属性来访问标签名,返回的是大写标签名字符串</p>
+
+<p><strong>HTML元素</strong></p>
+
+<blockquote>
+  <p>标准特性——即每个HTML元素都有的特性</p>
+</blockquote>
+
+<p>id        唯一标识符</p>
+
+<p>title     说明信息</p>
+
+<p>lang      语言</p>
+
+<p>dir       语言方向</p>
+
+<p>className   获取或设置元素的class值</p>
+
+<h4 id="104-attr-类型">10.4 attr 类型</h4>
+
+<p>nodeName=属性名</p>
+
+<p>nodeValue=属性值</p>
+
+<p>nodeType=2</p>
+
+<p><strong>创建属性节点</strong></p>
+
+<p>document.createAttribute();</p>
+
+<p><strong>特性操作</strong></p>
+
+<p>someElement.getAttribute();  获取特性</p>
+
+<p>someElement.setAttribute();  设置特性</p>
+
+<p>someElement.removeAttribute(); 移除特性</p>
+
+<blockquote>
+  <p>以上方法一般用于操作自定义属性，别的属性可以直接通过属性访问来操作。style属性与事件处理属性使用以上方法操作室返回字符串，属性访问则返回对象与函数</p>
+</blockquote>
+
+<p>someElement.attributes</p>
+
+<p>获取元素的<code class="highlighter-rouge">NameNodeMap</code>属性集合，有若干方法</p>
+
+<p>someElement.attributes.getNameItem(name);</p>
+
+<p>根据name属性名从集合中获取某个属性值</p>
+
+<p>someElement.attributes.setNameItem(node);</p>
+
+<p>想集合中添加属性</p>
+
+<p>someElement.attributes.removeNameItem(name);</p>
+
+<p>移除集合中的某个属性</p>
+
+<p>item(n)</p>
+
+<p>返回某个属性</p>
+
+<p>属性名不区分大小写</p>
+
+<p><strong>创建元素</strong></p>
+
+<p>document.createElement();</p>
+
+<p>创建元素，如果传入一个标签名的话会自动创建；而为了避免一些在IE7上的问题的时候，可以直接传入整个标签做参数，特殊符号记得转译</p>
+
+<p><strong>元素的子节点</strong></p>
+
+<p>浏览器对空白节点的认定有差异，所以在做子节点操作的时候要注意确认节点类型</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for(var i=0;i&lt;element.childNodes.length;i++){
+  if(element.childNodes[i].nodeType==1){
+      //执行操作
+  }
+}
+</code></pre>
+</div>
+
+<h4 id="105-text-类型">10.5 Text 类型</h4>
+
+<p>nodeType=3</p>
+
+<p>nodeName=”#text”</p>
+
+<p>nodeValue=包含文本</p>
+
+<p>textNode.appendData(text);</p>
+
+<p>向节点末尾添加文本</p>
+
+<p>textNode.deleteData(offset,count);</p>
+
+<p>从节点中offset位置起删除count个字符.offset不能为负数，count为负值时直接删到末尾</p>
+
+<p>textNode.insertDate(offset,text);</p>
+
+<p>从节点中的offset位置添加文本</p>
+
+<p>textNode.replaceData(offset,count,newtext);</p>
+
+<p>用新文本替换掉节点中从offset到offset+count位置的文本</p>
+
+<p>splitText(offset);</p>
+
+<p>从指定位置把当前文本分为两个文本节点</p>
+
+<p>substringData(offset,count);</p>
+
+<p>截取offset到offset+count位置的字符串</p>
+
+<p>document.createTextNode();</p>
+
+<p>创建文本节点</p>
+
+
+    <div id="disqus_container">
+  <div class="share-con">
+    
+  </div>
+
+  <!--<a href="#" class="comment" onclick="return false;">点击查看评论</a>-->
+  <div id="disqus_thread"></div>
+</div>
+
+  </div>
+
+  <div class="about-wrapper">
+  <!--<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1855270953&verifier=375b89d6&dpc=1" style="margin: 30px 0;"></iframe>-->
+
+  <div class="aboutme">
+    <h2><a href="/">所有文章</a></h2>
+    <ul>
+      
+      <li>
+        <a href="/Shannon-and-CFS" class="title">学习篇（一）</a>
+      </li>
+      
+      <li>
+        <a href="/DOM2" class="title">DOM2</a>
+      </li>
+      
+      <li>
+        <a href="/Dom-extend" class="title">DOM Extend</a>
+      </li>
+      
+      <li>
+        <a href="/my-blog" class="title">博客搭建记录</a>
+      </li>
+      
+      <li>
+        <a href="/DOM" class="title">DOM</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+  <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="/js/post.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM2 | Lee</title>
+    <meta name="author" content="Lee" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Lee's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/blog.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <style>html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+main {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]),
+[hidden] {
+  display: none;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+  font-family: Helvetica, Tahoma, Arial, 'Hiragino Sans GB', '\51AC\9752\9ED1\4F53', 'Microsoft YaHei', '\5FAE\8F6F\96C5\9ED1', STXihei, '\534E\6587\7EC6\9ED1', SimSun, '\5B8B\4F53', Heiti, '\9ED1\4F53', sans-serif;
+  font-size: 16px;
+}
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+}
+a {
+  color: #4a75b5;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a.external {
+  padding-right: 13px;
+  background: url("/images/icons.gif") no-repeat right 1px;
+}
+a.external:hover {
+  background-position: right -15px;
+}
+.index-wrapper .aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  max-width: 500px;
+  background: #59a0b0;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .aside {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    max-width: none;
+  }
+}
+.index-wrapper .info-card {
+  position: absolute;
+  margin-top: 70%;
+  text-align: center;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .info-card {
+    margin-top: 70px;
+  }
+}
+.index-wrapper .info-card h1 {
+  font-size: 40px;
+  color: #fff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 80px rgba(255,255,255,0.5);
+  letter-spacing: 0.15em;
+  text-shadow: rgba(255,255,255,0.5) 0 0 15px, rgba(255,255,255,0.5) 0 0 10px;
+}
+.index-wrapper .info-card a {
+  margin: 0 15px;
+}
+.index-wrapper .index-content {
+  margin-left: 30%;
+  padding-top: 80px;
+  padding-right: 15%;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .index-content {
+    margin-left: 0;
+    padding-right: 0;
+  }
+}
+.index-wrapper .artical-list {
+  width: 70%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .artical-list {
+    width: 85%;
+  }
+}
+.index-wrapper .artical-list li {
+  margin-bottom: 70px;
+}
+.index-wrapper .title {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 15px;
+  word-break: break-all;
+  font-weight: bold;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+  color: #444;
+}
+@media screen and (max-width: 767px) {
+  .index-wrapper .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+}
+.index-wrapper .title:hover {
+  color: #e50053;
+  text-decoration: none;
+}
+.index-wrapper .title-desc {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.body-post {
+  background: #f5f5f5;
+}
+@media screen and (max-width: 767px) {
+  .body-post {
+    background: #fff;
+  }
+}
+.post-wrapper {
+  width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 80px 60px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper {
+    width: 85%;
+    margin: 100px auto 50px;
+    padding: 0;
+  }
+}
+.post-wrapper .post-title,
+.post-wrapper .post-title a {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #000;
+  text-align: center;
+  word-wrap: break-word;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-title,
+  .post-wrapper .post-title a {
+    font-size: 24px;
+  }
+}
+.post-wrapper .post-title:hover,
+.post-wrapper .post-title a:hover {
+  text-decoration: none;
+}
+.post-wrapper .post-date {
+  text-align: center;
+  color: #999;
+  margin-bottom: 60px;
+  font-size: 14px;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper .post-date {
+    margin-bottom: 40px;
+  }
+}
+.post-wrapper h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+@media $mobiel {
+  .post-wrapper h2 {
+    font-size: 20px;
+  }
+}
+.post-wrapper h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #222;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper h3 {
+    font-size: 16px;
+  }
+}
+.post-wrapper h4,
+.post-wrapper h5,
+.post-wrapper h6 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.post-wrapper p {
+  margin-bottom: 40px;
+  line-height: 1.8em;
+}
+.post-wrapper code {
+  background: #eee;
+  border: 1px solid #ccc;
+  padding: 0 5px;
+  font-family: "Courier";
+  line-height: 14px;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.post-wrapper pre {
+  background: #f7f3f7;
+  padding: 20px 30px 15px;
+  overflow: auto;
+  margin-bottom: 40px;
+  font-size: 14px;
+  border: 1px solid #eee;
+  color: #b9bdb6;
+  margin-top: -20px;
+}
+.post-wrapper pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  word-wrap: normal;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper pre code {
+    line-height: 1em;
+    font-size: 12px;
+  }
+}
+.post-wrapper h4+pre,
+.post-wrapper h3+pre {
+  margin-top: 20px;
+}
+.post-wrapper ul {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ul li {
+  margin-bottom: 5px;
+  list-style: disc;
+  line-height: 1.8em;
+}
+.post-wrapper p + ul {
+  margin-top: -20px;
+}
+.post-wrapper ol {
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+.post-wrapper ol li {
+  margin-bottom: 5px;
+  list-style: decimal;
+  line-height: 1.1em;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper ol li {
+    margin-bottom: 0;
+    line-height: 1em;
+  }
+}
+.post-wrapper blockquote {
+  margin-left: 25px;
+  font-size: 14px;
+  font-style: italic;
+}
+.post-wrapper img {
+  max-width: 670px;
+  display: block;
+  margin: 10px auto;
+}
+@media screen and (max-width: 767px) {
+  .post-wrapper img {
+    max-width: 90%;
+  }
+}
+.post-wrapper table {
+  margin: 0 auto;
+}
+.about-wrapper {
+  background: #7e96a9;
+  width: 900px;
+  margin: 0 auto;
+  padding: 30px 60px;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper {
+    width: 100%;
+    padding: 0 7.5% 30px;
+  }
+}
+.about-wrapper .aboutme {
+  zoom: 1;
+}
+.about-wrapper .aboutme:before,
+.about-wrapper .aboutme:after {
+  content: "";
+  display: table;
+}
+.about-wrapper .aboutme:after {
+  clear: both;
+}
+.about-wrapper .aboutme h2 {
+  margin-bottom: 20px;
+}
+.about-wrapper .aboutme h2 a {
+  font-size: 18px;
+}
+.about-wrapper .aboutme li {
+  line-height: 1.4;
+  margin-bottom: 10px;
+  float: left;
+  width: 50%;
+}
+@media screen and (max-width: 767px) {
+  .about-wrapper .aboutme li {
+    float: none;
+    width: 80%;
+  }
+}
+.about-wrapper .aboutme a {
+  color: #fff;
+  font-size: 14px;
+}
+#particles-js {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 20%;
+  -moz-background-size: 20%;
+  background-size: 20%;
+  background-position: 50% 50%;
+  background: #38658c;
+  background: -webkit-radial-gradient(top left, #5d3571, #38658c);
+  background: -moz-radial-gradient(top left, #5d3571, #38658c);
+  background: -o-radial-gradient(top left, #5d3571, #38658c);
+  background: -ms-radial-gradient(top left, #5d3571, #38658c);
+  background: radial-gradient(to bottom right, #5d3571, #38658c);
+}
+#disqus_container {
+  font-size: 12px;
+}
+#disqus_container .share-con {
+  float: right;
+  margin-bottom: 20px;
+}
+#disqus_container a.comment {
+  font-size: 14px;
+}
+.prettyprint {
+  background: #f7f3f7;
+  border: 0 !important;
+}
+.pln {
+  color: #1b181b;
+}
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #5a7b8c;
+}
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 0.4em;
+  background-color: #f7f3f7;
+  list-style-type: decimal;
+}
+@media screen {
+  .str {
+    color: #918b3b;
+  }
+  .kwd {
+    color: #7b59c0;
+  }
+  .com {
+    color: #5a7b8c;
+  }
+  .typ {
+    color: #516aec;
+  }
+  .lit {
+    color: #a65926;
+  }
+  .pun {
+    color: #1b181b;
+  }
+  .opn {
+    color: #1b181b;
+  }
+  .clo {
+    color: #1b181b;
+  }
+  .tag {
+    color: #ca402b;
+  }
+  .atn {
+    color: #a65926;
+  }
+  .atv {
+    color: #159393;
+  }
+  .dec {
+    color: #a65926;
+  }
+  .var {
+    color: #ca402b;
+  }
+  .fun {
+    color: #516aec;
+  }
+}
+.wiki h2 {
+  cursor: pointer;
+}
+.wiki ul {
+  margin-left: 30px;
+  margin-bottom: 20px;
+  list-style: disc;
+}
+.wiki ul li {
+  margin-bottom: 5px;
+}
+.wiki ul ul {
+  list-style: circle;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+</style>
+  </head>
+
+  <body class="body-post">
+  <div class="post-wrapper">
+    <h1 class="post-title"><a href="/DOM2" title="DOM2">DOM2</a></h1>
+    <p class="post-date">2017-05-28</p>
+    <h3 id="121-命名空间">12.1 命名空间</h3>
+<p>DOM2 针对XML与XHTML引入了“命名空间”的变化，因为没有用到，昝不表，等以后改进。</p>
+
+<p>说下自己感兴趣的</p>
+
+<h3 id="122-dom样式操作">12.2 DOM样式操作</h3>
+
+<p>在DOM中，我们直接通过操作style对象来实现对元素样式的获取与设置，但仅限于行内样式。DOM2增强了这个对象并为之提供了新的一些方法跟属性。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>element.style.cssText //获取元素的css样式代码
+element.style.length //获取元素的CSS属性数量
+element.style.parentRule//表示css信息的CSSRule对象
+element.style.getPropertyCSSValue(propertyName)//返回给定属性值的CSSValue对象
+element.style.getPropertyPriority(propertyName)//如果给定css属性使用了!important设置，返回“!important”,否则，返回空字符串
+element.style.getPropertyValue(propertyName)//返回给定属性的字符串值
+element.style.item(index)//返回给定位置的CSS属性的名称
+element.style.removeProperty(propertyName)//从样式中删除指定属性
+element.style.setProperty(propertyName,value,priority)//将给定属性设置为相应的值，并设疑优先权标志（一个空字符串或者“!important”）
+</code></pre>
+</div>
+
+<p>而针对嵌入页面的样式，DOM2则增强了<code class="highlighter-rouge">document.defaultView</code>属性，添加了<code class="highlighter-rouge">getComputedStyle()</code>方法。IE不支持<code class="highlighter-rouge">defaultView</code>,但提供了类似的<code class="highlighter-rouge">currentStyle</code>属性</p>
+
+<p>最后针对样式表，DOM2则提供了<code class="highlighter-rouge">document.styleSheets</code>集合,这个集合表示文档中所有的样式表。通过下标选取的方式，我们可以选定我们想要操作的样式表。<strong><code class="highlighter-rouge">CSSStyleSheet</code>继承自<code class="highlighter-rouge">styleSheet</code>,有如下属性与方法</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>disabled//表示样式表是否被禁用,可读写，设置为true可禁用样式表
+href//如果样式表是通过&lt;link&gt;包含的，则获得样式表的url，否则，返回null
+media//表示样式吊支持的媒体类型的集合
+ownerNode//指向拥有当前样式表引用的节点，html中为&lt;link&gt;或&lt;style/&gt;，如果是@import,则为null,IE不支持
+parentStyleSheet//在当亲样式表是通过@import引入的情况下，这个属性是一个包含当前引用它的样式表的指针
+title//ownerNode中title的值
+type//表示样式表的类型
+cssRules//样式表中的规则的集合，IE不支持，有一个类似的rules属性
+ownerRule(index)//如果样式表是通过@import引入的，这个属性是一个指向导入规则的指针，不然，返回NULL,IE不支持
+deleteRule//删除集合中指定的规则，IE不支持,但有一个类似的removeRule()方法
+insertRule(rule,index)//在指定位置增加规则，IE不支持，但有一个类似的addRule()方法
+</code></pre>
+</div>
+
+<p>我们通过类似以下方式来操作样式表中的规则：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var sheet=document.styleSheets[0];//获取指定样式表
+var rules=sheet.cssRules || sheet.rules;//获取样式表中规则的集合
+var rule=rules[0];//获得要操作的指定样式
+</code></pre>
+</div>
+
+<p>这试的<code class="highlighter-rouge">rule</code>就是一个具体的规则对象，属于<strong>CSSStyleRule</strong>类型，继承自<strong>CSSRule</strong>基本类型。DOM2给出了以下属性来便于我们操作具体规则</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cssText//返回整条的规则文本，IE不支持
+parentRule//如果当前规则是导入的入则，则引用的就是导入规则，否则为NULL，IE不支持
+parentStyleSheet//当前规则所属的样式表,IE不支持
+selectorText//返回当前的带选择符文本，只读
+style//一个CSSStyleDeclaration对象，可以通过它设置与获取规则中特定样式的值
+type//表示规则类型，对于样式规则，这个值是1，IE不支持
+</code></pre>
+</div>
+
+<h3 id="123-元素大小">12.3 元素大小</h3>
+
+<h3 id="124-遍历">12.4 遍历</h3>
+
+<p>这里的遍历是指对文档节点的遍历，DOM2给出了两个方法————<code class="highlighter-rouge">NodeIterator</code>还有<code class="highlighter-rouge">TreeWalker</code></p>
+
+<p><strong>NodeIterator</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.createNodeIterator(root,NodeFilter.SHOW_ELEMENT,filterFunction,false);
+//root:遍历的起始节点
+//NodeFilter.SHOW_***允许显示的节点类型
+//filterFunction可自定义的过滤方法
+//false 是否扩展实体引用，在html中实体不能扩展，所以一般为false
+</code></pre>
+</div>
+
+<blockquote>
+  <p>NodeFilter.SHOW_***中可选值为<code class="highlighter-rouge">ALL</code>以及十二节点类型，一般也就<code class="highlighter-rouge">ELEMENT,TEXT,ATTRIBUTE</code>老三样，其他不常用</p>
+</blockquote>
+
+<p>我们有两种方法自定义过滤：</p>
+
+<ol>
+  <li>
+    <p>在<code class="highlighter-rouge">createNodeIterator()</code>遍历过程中，被遍历的节点称为<code class="highlighter-rouge">NodeFilter</code>对象，每个<code class="highlighter-rouge">NodeFilter</code>对象只有一个方法，就是<code class="highlighter-rouge">acceptNode()</code>,我们可以重写这个方法来实现自定义过滤；</p>
+  </li>
+  <li>
+    <p>我们也可以通过<code class="highlighter-rouge">createNodeIterator()</code>中的第三个参数参入一个过滤函数来进行我们自定义的过滤。如果符合条件的节点，返回<strong>NodeFilter.FILTER_ACCEPT</strong>,如果是不符合条件的节点，返回<strong>NodeFilter.FILTER_SKIP</strong></p>
+
+    <p>//重写acceptNode方法使得遍历结果只显示P元素
+ var filter={
+     acceptNode:function(node){
+        return nodetagName.toLowerCase()==”p”?
+        NodeFilter.FILTER_ACCEPT:
+        NodeFilter.FILTER_SKIP;
+     } 
+ };
+ var iterator=document.createIterator(root,NodeFilter.SHOW_ELEMENT,filter,false);</p>
+  </li>
+</ol>
+
+<p>或许我们传入一个类似结构的过滤函数</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var filter=function(){
+    nodetagName.toLowerCase()=="p"?
+       NodeFilter.FILTER_ACCEPT:
+       NodeFilter.FILTER_SKIP;
+};
+var iterator=document.createIterator(root,NodeFilter.SHOW_ELEMENT,filter,false);
+</code></pre>
+</div>
+
+<p>我们也可以适用自定义过滤，直接传入一个null,这样就全部显示被遍历的元素</p>
+
+<p>NodeIterator类型的两个主要方法是<code class="highlighter-rouge">nextNode()</code>还有<code class="highlighter-rouge">previousNode()</code></p>
+
+<p>假如我们有如下html代码</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;div id="div1"&gt;
+   &lt;p&gt;&lt;b&gt;Hello&lt;/b&gt; world!&lt;/p&gt;
+   &lt;ul&gt;
+      &lt;li&gt;List item1&lt;/li&gt;
+      &lt;li&gt;List item2&lt;/li&gt;
+      &lt;li&gt;List item3&lt;/li&gt;
+      &lt;li&gt;List item4&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p>现在我们想要遍<code class="highlighter-rouge">&lt;div&gt;</code>元素中的所有元素，我们可以进行如下操作</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var div=document.getElementById("div1");
+var iterator=document.createIterator(div,NodeFilter.SHOW_ELEMENT,null,false);
+var node=iterator.nextNode();//注释1
+while(node !==null){
+   alert(node.tagName);
+   node=iterator.nextNode();
+}
+</code></pre>
+</div>
+
+<p>注释1：在新创建的<code class="highlighter-rouge">NodeIterator</code>对象中，有一个内部指针指向根节点，因此第一次调用<code class="highlighter-rouge">nextNode()</code>会返回根节点</p>
+
+<p><strong>TreeWalker</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>document.createTreeWalker(root,NodeFilter.SHOW_***,filterFunction,false);
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">TreeWalker</code>与<code class="highlighter-rouge">NodeIterator</code>差别不是很大。但<code class="highlighter-rouge">TreeWalker</code>提供了更多的方法，使得它可以在DOM结构中沿任何方向移动</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>parentNode()//遍历到当前节点的父节点
+firstChild()//遍历到当前节点的第一个子节点
+lastchild()//遍历到当前节点的最后一个子节点
+nextSibling()//遍历到当前节点的下一个同辈节点
+previousSibling()//遍历到当前节点的上一个同辈节点
+</code></pre>
+</div>
+
+<p>在<code class="highlighter-rouge">TreeWalker()</code>方法遍历的过程中，过滤器的返回特殊值意义有所不同.<code class="highlighter-rouge">NodeFilter.FILTER_SKIP</code>类似于循环中的<code class="highlighter-rouge">continue</code>,而使用<code class="highlighter-rouge">NodeFilter.FILTER_REJECT</code>则相当于循环中的<code class="highlighter-rouge">break</code></p>
+
+
+    <div id="disqus_container">
+  <div class="share-con">
+    
+  </div>
+
+  <!--<a href="#" class="comment" onclick="return false;">点击查看评论</a>-->
+  <div id="disqus_thread"></div>
+</div>
+
+  </div>
+
+  <div class="about-wrapper">
+  <!--<iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=75&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=0&isFans=0&uid=1855270953&verifier=375b89d6&dpc=1" style="margin: 30px 0;"></iframe>-->
+
+  <div class="aboutme">
+    <h2><a href="/">所有文章</a></h2>
+    <ul>
+      
+      <li>
+        <a href="/Shannon-and-CFS" class="title">学习篇（一）</a>
+      </li>
+      
+      <li>
+        <a href="/DOM2" class="title">DOM2</a>
+      </li>
+      
+      <li>
+        <a href="/Dom-extend" class="title">DOM Extend</a>
+      </li>
+      
+      <li>
+        <a href="/my-blog" class="title">博客搭建记录</a>
+      </li>
+      
+      <li>
+        <a href="/DOM" class="title">DOM</a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+  <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="/js/post.js" type="text/javascript"></script>
+</body>
+
+</html>
