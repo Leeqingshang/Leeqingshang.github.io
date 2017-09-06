@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>博客搭建记录 | Lee</title>
+    <title>gulp初步尝试 | Lee</title>
     <meta name="author" content="Lee" />
     <meta name="renderer" content="webkit">
     <meta name="description" content="Lee's Blog" />
@@ -583,174 +583,241 @@ li.L9 {
 
   <body class="body-post">
   <div class="post-wrapper">
-    <h1 class="post-title"><a href="/my-blog" title="博客搭建记录">博客搭建记录</a></h1>
-    <p class="post-date">2017-05-23</p>
-    <p>主要记录一下这个博客的诞生。</p>
+    <h1 class="post-title"><a href="/gulp-basic" title="gulp初步尝试">gulp初步尝试</a></h1>
+    <p class="post-date">2017-09-07</p>
+    <p><strong>gulp是什么</strong></p>
 
-<p>看到可以直接用github搭建自己的独立博客，就想弄一个，所以就去搜索了一下，自己条件原因没翻墙，所以很多情况都是坑，几经折腾。</p>
+<p>就我个人的理解来说，gulp最开始是个提供简单功能搭建的工具。它本身不提供任何功能，所用的功能支持由插件提供，而功能的使用构建由使用者来制定。我需要使用less，就require一个gulp-less插件，然后在gulpfile.js主文件里调用这个插件来实现我的需求。这里所谓的调用就是新建一个task，gulp的主体就是一个个task以流的方式组合实现的。</p>
 
-<p>我自己的环境是win10系统，没翻墙，所以本篇仅仅是做个记录，而不作为参考。</p>
+<p><strong>使用</strong></p>
 
-<p>主要分为几个部分：</p>
-<ol>
-  <li>配置ssh key使得github远程仓库与本地文件建立联系</li>
-  <li>利用Github Pages建立博客项目</li>
-  <li>购买/绑定域名</li>
-  <li>使用jekyll搭建博客文件目录，管理内容</li>
-</ol>
+<p>gulp依赖于node，所以要在安装好，然后安装gulp，全局活项目本地安装随便。然后过程中容易出错，多看错误提示就好了。</p>
 
-<h3 id="配置与使用github">配置与使用github</h3>
+<p>按照自己的需求来加载各种插件，但要注意是否已经下载支持。</p>
 
-<p>我们既然是依赖于github，那么首先就要配置好github。
-我们使用git来做操作，所以要先下载安装git，这里不再赘述。</p>
+<p><strong>一些其他的</strong></p>
 
-<p>安装好以后，右击鼠标选择打开Git Bash</p>
+<p>据说以后的趋势是webpack,跟gulp不同，webpack是把所有的资源以模块的方式绑定到一起。我感觉应该gulp应该是零散件，对于小型/个人项目是比较合适的。而webpack可能是整体的类似fis那样的东西，但应该没那么强大，比较fis对应的企业级的开发。</p>
 
-<p><strong>1.检查SSH key</strong></p>
+<p><strong>安装准备</strong></p>
 
-<p>ssh key就是进行连接认证的一个加密串。你要想用git连接上自己的远程仓库，就需要有这个东西。</p>
+<p><code class="highlighter-rouge">npm init</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ cd  ~/.ssh
+<p>建立package.js文件，你好我也好</p>
+
+<p><strong>安装gulp</strong></p>
+
+<p>全局安装，使得你可以在命令行窗口使用gulp命令</p>
+
+<p><code class="highlighter-rouge">npm install --global gulp-cli</code></p>
+
+<p>安装gulp本地环境支持</p>
+
+<p><code class="highlighter-rouge">npm install gulp --save-dev</code></p>
+
+<p>使用<code class="highlighter-rouge">gulp -v</code>命令版本信息，检验是否安装成功</p>
+
+<p><strong>使用gulp</strong></p>
+
+<p>gulp有多个任务模块构建成流式的输入输出结构</p>
+
+<p>你所做的，就是依据自身需求写各种task</p>
+
+<p>首先，在项目目录下<em>新建一个gulpfile.js的文件</em>，也就是gulp的任务流文件，我们整个操作基本都写字这个文件里面</p>
+
+<p>然后,引入gulp</p>
+
+<p><code class="highlighter-rouge">const gulp = require('gulp');</code></p>
+
+<p>构建任务</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>task('test-task',function(){
+    // place code for your default task here
+    console.log('test-task start!')
+});
 </code></pre>
 </div>
 
-<p>检查电脑上的ssh,在<code class="highlighter-rouge">C:/用户/用户名/.ssh/</code>可以看到.</p>
+<p>这样，就写好了一个最简单的任务，task接受两个参数，一个任务名称，一个返回方法。</p>
 
-<p>如果显示“No such file or directory”则说明之前本地没有进行过链接，直接跳到第三步</p>
+<p>直接<code class="highlighter-rouge">gulp test-task</code>执行，就可以看到我们预先设置好的输出结果。</p>
 
-<p><strong>2.备份和移除原来的ssh key设置</strong></p>
+<p>当然，我们实际开发过程中的操作肯定要复杂些，下面介绍gulp的api，以及一些常用的插件的使用</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ ls
-config id_rsa id_rsa.pub known_hosts
-$ mkdir key_backup
-$ cp id_rsa* key_backup
-$ rm id_rsa*
+<p><strong>API</strong></p>
+
+<p><code class="highlighter-rouge">gulp.src(globs[, options])</code></p>
+
+<p>读取一个文件流名称或者文件流名称数组，返回对应的文件流。简单粗暴的说就是读取文件，后续可以对这个文件流进行<code class="highlighter-rouge">pipe()</code>拼接执行其他操作</p>
+
+<p><em>文件流也包括具体的文件地址，或是筛选出来的多个文件，比如<code class="highlighter-rouge">*.js</code></em></p>
+
+<p><code class="highlighter-rouge">gulp.dest(path[, options])</code></p>
+
+<p>把一个文件流导出到目的地。参数为一个文件夹地址或者多个目录组成的数组。必须要先有文件流输入才能起作用。当传入的目录不存在时会被创建</p>
+
+<p><code class="highlighter-rouge">gulp.task（name [，deps] [，fn]）</code></p>
+
+<p>构建任务，参数为当前任务名，一个任务列表数组（可选），执行函数。如果你设置了任务列表，代表着执行当前任务之前要先执行数组中的任务。</p>
+
+<p><code class="highlighter-rouge">gulp.watch(glob[, opts, cb])</code></p>
+
+<p>监听一个或多个文件，参数为文件文件/文件流地址，后面可选参数为当文件内容改变时要执行的任务列表数组，或者也可以是一个普通的执行函数。</p>
+
+<p><code class="highlighter-rouge">gulp.run(task[opts,..])</code></p>
+
+<p>运行一个或者多个任务</p>
+
+<p><a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md">参考官方API</a></p>
+
+<p><strong>常用插件</strong></p>
+
+<p><code class="highlighter-rouge">gulp-sass</code></p>
+
+<p>对SCSS文件进行编译，转换成CSS的输出流，类似的还有gulp-less</p>
+
+<p><code class="highlighter-rouge">gulp-uglify</code></p>
+
+<p>js文件压缩</p>
+
+<p><code class="highlighter-rouge">gulp-minify-css</code></p>
+
+<p>css 文件压缩</p>
+
+<p><code class="highlighter-rouge">gulp-imagemin</code></p>
+
+<p>图片压缩</p>
+
+<p><code class="highlighter-rouge">gulp-autoprefixer</code></p>
+
+<p>自动添加css兼容前缀</p>
+
+<p><code class="highlighter-rouge">gulp-concat</code></p>
+
+<p>合并js文件</p>
+
+<p><code class="highlighter-rouge">gulp-cache</code></p>
+
+<p>图片缓存</p>
+
+<p><code class="highlighter-rouge">gulp-connect</code></p>
+
+<p>建立一个本地的运行环境</p>
+
+<p>另外还有一些</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gulp-jshint//js代码校验提示
+gulp-notify//更改提醒
+del        //清除文件
 </code></pre>
 </div>
 
-<p><strong>3.生成新的ssh key</strong></p>
+<p>我们做个简单的例子：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ ssh-keygen -t rsa -C "邮件地址@youremail.com"
-Generating public/private rsa key pair.
-Enter file in which to save the key(Users/your_user_directory/.ssh/di_rsa):&lt;回车就好&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>gulp.task('connect',function(){
+  connect.server({
+    root:'./',
+    livereload:true,
+    port:2008
+  })
+});
+
+gulp.task('css',function(){
+  gulp.src('./src/scss/*.scss')
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(gulp.dest('./dist/css'))
+    .pipe(connect.reload());
+});
+
+gulp.task('watch',function(){
+  gulp.watch('./src/scss/*.scss',['css'])
+});
+
+gulp.task('default',['connect','watch'])
 </code></pre>
 </div>
 
-<p>然后系统会要求输入加密串（Passphrase）:</p>
+<p>这样就做好了一个根据sass文件更改自动更新的环境</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Enter passphrase (empty for no passphrase):&lt;输入加密串&gt;
-Enter same passphrase again:&lt;再次输入加密串&gt;
+<p>接下来说下我用过的一些插件的理解</p>
+
+<p><strong>gulp-watch</strong></p>
+
+<p>这个插件看名字就知道是监听，但<code class="highlighter-rouge">gulp.watch()</code>已经有监听功能了，那与之有什么区别呢？</p>
+
+<p>首先，<code class="highlighter-rouge">gulp.watch()</code>它并不具备具体过滤识别功能，比如说</p>
+
+<p><code class="highlighter-rouge">gulp.watch('./src/*.js',['task1'])</code></p>
+
+<p>这个时候，目录src下的所有js文件都会被重载，而使用<code class="highlighter-rouge">gulp-watch</code>可以进行过滤监听，只有发生改动的文件才会被传递到下一步操作。这对监听文件量大的项目来说是很有用的</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var gulp = require('gulp');
+var sass = require('gulp-sass');
+var watch = require('gulp-watch');
+var plumber = require('gulp-plumber');
+gulp.task('css',function(){
+    gulp.src('./scss/*.scss')
+    .pipe(watch('./scss/*.scss'))//watch必须有参数，不然会报错
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(gulp.dest('./dist/css'))
+})
 </code></pre>
 </div>
 
-<p>最后看到这样的界面，就成功设置了ssh key：
-<img src="/images/githubpages/ssh-key-set.png" alt="image" /></p>
+<p>上面的任务中，<code class="highlighter-rouge">gulp-watch</code>就起到了过滤器的作用</p>
 
-<p><strong>4.添加ssh key到github</strong></p>
+<p>当然，你也可以用来替代<code class="highlighter-rouge">gulp.watch</code>:</p>
 
-<p>进入到<code class="highlighter-rouge">C:/用户/用户名/.ssh/</code>找到id_ras.pub文件，打开复制里面生成的key</p>
-
-<p>然后打开github，在头像点击一下进入settings,然后在左侧栏点击SSH and GPG keys，在SSH keys 栏目中点击New SSH key按钮，然后填入自定义title再粘贴ssh key提交完成。</p>
-
-<p><strong>5、设置你的账号信息</strong></p>
-
-<p>现在你已经可以通过SSH链接到GitHub了，还有一些个人信息需要完善的。</p>
-
-<p>Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>$ git config --global user.name "你的名字"
-$ git config --global user.email "your_email@youremail.com"
+<div class="highlighter-rouge"><pre class="highlight"><code>watch('./scss/*.scss',function(){
+     //在这里写你的操作代码
+})
 </code></pre>
 </div>
 
-<blockquote>
-  <p>我做以上步骤的时候因为事先进行过git工具的安装，所以它已经帮我设置好了ssh key，我就没有自己再去弄ssh key，另外因为时间的原因可能有些细节部分可能会与现状的一些操作有所差别，所以有坑不填。</p>
-</blockquote>
+<p>当然，你会发现写法会有些不同，主要是它并不像原生watch一样支持数组参数形式.我们可以用处理任务写成函数来执行。</p>
 
-<h3 id="使用github-pages建立博客">使用Github Pages建立博客</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>gulp.watch('./src/*.scss',['task1','task2'])
 
-<p>使用Github Pages建立博客非常简单，进入 <a href="https://pages.github.com/"> Github Pages</a>的官网主页，然后就有介绍怎么建立自己的项目。</p>
+function task1(){
+   //任务task1的操作
+}
 
-<p><strong>User or Organizatioin Pages</strong></p>
-
-<p>Github  Pages里面支持的项目分为两类，一种是个人博客主页，一个账号仅限对应的一个。另一种是项目展示，需要我们建立gh-pages的分支来展示。在这里，我们当然是第一种。</p>
-
-<p>新建一个项目，然后命名为<code class="highlighter-rouge">username.github.io</code>注意，这里的username就是你的用户名,要完全一致,github会根据这个名字识别为用户主页项目，所以，不要搞错。</p>
-
-<p>创建好这个项目以后，提交一个index.html，随便添加一些内容，再访问<code class="highlighter-rouge">username.github.io</code>就可以看到你的主页，就是这么神奇，一切都由github提供支持，赞美github.</p>
-
-<h3 id="购买绑定域名">购买/绑定域名</h3>
-
-<p>对，我们要建立自己的博客，连域名都要是独一无二的。</p>
-
-<p><strong>1.购买域名</strong></p>
-
-<p>购买域名的地方很多，<a href="https://wanwang.aliyun.com/">万网</a>，<a href="https://dcc.godaddy.com/">Godaddy</a>.我入的是后者，因为境外的，所以我跟着教程弄个国内的<a href="https://www.dnspod.cn/">DNSPOD</a>域名解析.万网是阿里的，所以就没必要域名解析了。</p>
-
-<p>购买域名就不多说，选好了给钱就行。我们购买好了域名以后注册DNSPOD，登录，在域名解析栏目下添加域名</p>
-
-<p>DNSPOD域名解析三部曲：</p>
-<ol>
-  <li>添加域名记录，<a href="https://www.dnspod.cn/Support">新手指南</a></li>
-  <li>在域名下添加一条新的A记录，地址为Github提供的服务地址<code class="highlighter-rouge">192.30.252.153</code>，这个地址可能会有变动，具体参考<a href="https://help.github.com/articles/my-custom-domain-isn-t-working">这里</a></li>
-  <li>然后返回godaddy去修改DNS管理的服务商地址，默认是godaddy自己提供的解析，但是因为有墙，所以才需要更改。帮助看<a href="https://www.dnspod.cn/support/index/fid/119">这里</a>
-4.等待生效，最迟要72个小时，当时等得我心碎</li>
-</ol>
-
-<blockquote>
-  <p>godaddy修改DNS地址的地方在用户名下拉菜单》我的产品》域名》管理DNS</p>
-</blockquote>
-
-<p><strong>绑定域名</strong></p>
-
-<p>绑定域名很简单，在你的博客根目录下，建立一个DNAME的文件，然后填入你的域名.再提交到github，就好了。</p>
-
-<h3 id="jekyll">Jekyll</h3>
-
-<p>Jekyll官方是不建议在windows系统下使用的，但没办法，条件受限。</p>
-
-<p><strong>安装Ruby</strong></p>
-
-<p>首页，因为jekyll依赖Ruby，所以我们要先安装<a href="http://rubyinstaller.org/downloads/">Ruby</a>,windows下都是傻瓜式安装，但要注意我们安装时候要选择添加到环境变量中</p>
-
-<p><img src="/images/githubpages/windows-ruby-install.png" alt="image" /></p>
-
-<p>安装完毕后,可以用<code class="highlighter-rouge">ruby -v</code>查看版本以检测是否安装成功</p>
-
-<p><strong>安装Ruby DevKit</strong></p>
-
-<p>因为windows系统不带Ruby编译，所以我们要安装<a href="https://rubyinstaller.org/downloads/">Ruby DevKit</a>，下载，解压。</p>
-
-<p>然后运行一下命令</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>ruby dk.rb init
-ruby dk.rb install
+function task2(){
+   //任务task1的操作
+}
+watch('./src/*.scss',function(){
+     task1();
+     task2();
+})
 </code></pre>
 </div>
 
-<p>成功后，就可以直接安装jekyll了,但因为我没有翻墙，所以需要引用国内的镜像，由ruby-china提供,具体操作看<a href="http://gems.ruby-china.org/">镜像</a></p>
+<p>当然，这样一看比较麻烦。所以最好是你确定你真的需要使用<code class="highlighter-rouge">gulp-watch</code>的时候才使用。</p>
 
-<p>修改好镜像后，我们就可以安装jekyll了</p>
+<p>另外，还可以用<code class="highlighter-rouge">gulp-watch</code>结合<code class="highlighter-rouge">gulp-filter</code>来针对不同的操作类型来执行不同的处理程序。比如我监听一个目录，新建文件时是一个处理程序，修改文件又是另外一个处理程序，<a href="https://github.com/floatdrop/gulp-watch/blob/master/docs/readme.md#filtering-custom-events">参见文档</a></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem install jekyll
+<p><strong>gulp-plumber</strong></p>
+
+<p>形成一个稳定的流，不会因为一些错误而中断服务</p>
+
+<p><strong>gulp-load-plugins</strong></p>
+
+<p>可以根据你的package.json里面的‘devDependencies’的内容加载插件，你就不需要在gulpfile.js文件的开头写那么一大堆引入，大概就是像下面的例子这样</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>const gulp = require('gulp');
+const plugins = require('gulp-load-plugins')();
+gulp.task('css',function(){
+        gulp.src('./css/*')
+        .pipe(plugins.sass())
+})
 </code></pre>
 </div>
 
-<p>如果修改镜像出现不明原因证书引用错误，那么直接引用<code class="highlighter-rouge">http://gems.ruby-china.org</code>,避免SSL问题</p>
+<p>总结：gulp有非常多的插件，甚至你可以根据自己的需要自己写一个插件，当然一般来说没有必要。另外，这只是在本地搭建一个环境。</p>
 
-<p>安装好以后，我们就可以在本地跑一下试试</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>$ jekyll serve --watch
-</code></pre>
-</div>
-
-<p>如果不报错的话，就可以在本地的4000端口看到博客主页了。</p>
-
-<p>参考：</p>
-
-<p><a href="http://beiyuu.com/github-pages">使用Github Pages建独立博客</a></p>
-
-<p><a href="https://www.douban.com/note/497241105/">windows环境下安装jekyll</a></p>
+<p>试用一个新的插件前最好对它有足够的了解，以免掉坑里。</p>
 
 
     <div id="disqus_container">
